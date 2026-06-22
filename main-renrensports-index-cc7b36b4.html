@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人人体育 · 信息卡页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf9f8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      color: #1e1e1e;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 780px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      padding: 2.5rem 2rem 3rem;
+      transition: box-shadow 0.25s;
+    }
+
+    @media (min-width: 600px) {
+      .page {
+        padding: 3.5rem 3.2rem 4rem;
+      }
+      body {
+        padding: 3rem 2rem;
+      }
+    }
+
+    /* 主视觉区域 ———— 极简留白 + 文字氛围 */
+    .hero {
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid #eae8e4;
+      padding-bottom: 2rem;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #eceae6;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #4b4a47;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #5b5a57;
+      max-width: 90%;
+      border-left: 3px solid #cbc8c0;
+      padding-left: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* 通用标题样式 */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #7a7870;
+      margin: 2.5rem 0 1.2rem 0;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 2px;
+      background: #cdc9c0;
+      margin-top: 6px;
+    }
+
+    /* 卡片网格 ———— 用途卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    @media (max-width: 520px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: #f5f3f0;
+      border-radius: 20px;
+      padding: 1.3rem 1.2rem 1.4rem;
+      transition: background 0.2s;
+    }
+
+    .card:hover {
+      background: #efece7;
+    }
+
+    .card em {
+      display: inline-block;
+      background: #dfdbd3;
+      color: #24221e;
+      font-style: normal;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.1rem 0.7rem;
+      border-radius: 30px;
+      margin-bottom: 0.6rem;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: #3f3e3a;
+    }
+
+    /* 适合人群 —— 紧凑列表 */
+    .audience-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1rem;
+      list-style: none;
+      margin: 0.5rem 0 1.6rem 0;
+    }
+
+    .audience-list li {
+      background: #f0eeea;
+      padding: 0.3rem 1.1rem 0.3rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2f2e2a;
+    }
+
+    .audience-list li::before {
+      content: '·';
+      margin-right: 0.3rem;
+      color: #989488;
+    }
+
+    /* 自然链接段落区域 */
+    .link-paragraph {
+      background: #f8f7f4;
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin: 2rem 0 0.8rem 0;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #292824;
+    }
+
+    .link-paragraph a {
+      color: #2f3e3c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #b7b1a6;
+      padding-bottom: 0.08rem;
+      transition: border-color 0.15s;
+    }
+
+    .link-paragraph a:hover {
+      border-bottom-color: #2f3e3c;
+    }
+
+    .faq-mini {
+      margin-top: 2.2rem;
+      border-top: 1px solid #e5e1da;
+      padding-top: 1.6rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item dt {
+      font-weight: 550;
+      font-size: 0.95rem;
+      color: #2d2b27;
+      margin-bottom: 0.2rem;
+      cursor: default;
+    }
+
+    .faq-item dd {
+      font-size: 0.9rem;
+      color: #595752;
+      margin-left: 0;
+      line-height: 1.6;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #e4e0d9;
+      margin: 1.6rem 0 0.5rem;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #9b9890;
+      margin-top: 2.4rem;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Hero 主视觉 -->
+    <div class="hero">
+      <span class="badge">信息卡 · 稳定入口说明</span>
+      <h1>人人体育<br>从一处明确的入口开始</h1>
+      <div class="sub">
+        无论日常关注赛事、浏览运动资讯，亦或寻找内容社区，一个直达的页面能减少反复跳转的消耗。这里整理了关于「人人体育」的核心用途与使用场景。
+      </div>
+    </div>
+
+    <!-- 用途卡片区 -->
+    <div class="section-title">用途卡片</div>
+    <div class="card-grid">
+      <div class="card">
+        <em>资讯</em>
+        <h3>赛程与动态</h3>
+        <p>聚合足球、篮球、网球等主流联赛赛程，以及运动员相关新闻，便于快速查阅当日看点。</p>
+      </div>
+      <div class="card">
+        <em>社区</em>
+        <h3>讨论与分享</h3>
+        <p>提供赛事讨论区与个人运动记录板块，适合寻找同好或分享训练心得。</p>
+      </div>
+      <div class="card">
+        <em>数据</em>
+        <h3>积分与统计</h3>
+        <p>包含球队积分榜、选手数据对比，辅助分析赛况趋势，不包含实时投注类内容。</p>
+      </div>
+      <div class="card">
+        <em>内容</em>
+        <h3>专栏与视频</h3>
+        <p>部分专栏作者提供赛事回顾、战术拆解，视频区收录高光集锦和运动教学。</p>
+      </div>
+    </div>
+
+    <!-- 适合人群 -->
+    <div class="section-title">适合人群</div>
+    <ul class="audience-list">
+      <li>日常观赛者</li>
+      <li>运动爱好者</li>
+      <li>数据查阅者</li>
+      <li>内容浏览者</li>
+      <li>社区参与者</li>
+    </ul>
+
+    <!-- 自然链接段落 —— 用句子嵌入 a 标签 -->
+    <div class="link-paragraph">
+      如果需要一处相对稳定的体育信息入口，可以试试使用
+      <a href="https://main-renrensports.com">人人体育</a>。
+      该页面整合了赛事资讯、专栏内容和社区入口，适合作为日常浏览的起点。
+      页面的结构偏向信息展示类，并未包含实时博彩或违法诱导内容，
+      更接近一个围绕运动内容聚合的说明型站点。建议新访客先浏览用途卡片，
+      再根据自身需求选择对应板块。
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <dl class="faq-item">
+        <dt>▸ 人人体育 主要提供什么？</dt>
+        <dd>赛程信息、运动新闻、专栏文章、社区讨论与基础数据统计，以内容聚合为主。</dd>
+      </dl>
+      <dl class="faq-item">
+        <dt>▸ 是否需要注册才能浏览？</dt>
+        <dd>大部分资讯和数据页面可直接阅读；参与社区发言或收藏功能需要注册账号。</dd>
+      </dl>
+      <dl class="faq-item">
+        <dt>▸ 移动端适配情况如何？</dt>
+        <dd>页面采用响应式设计，手机与平板均可正常浏览卡片和文章列表。</dd>
+      </dl>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+      · 本页为信息说明页，内容保持克制与中立 ·
+    </div>
+  </div>
+</body>
+</html>
